@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "chrome-extension",
+  "description": "Custom prompts for seamless online text interactions",
+  "version": "1.0",
+  "action": {
+    "default_icon": "extension128.png"
+  },
+  "icons": {
+    "16": "extension16.png",
+    "48": "extension48.png",
+    "128": "extension128.png"
+  },
+  "permissions": [
+    "aiLanguageModelOriginTrial",
+    "scripting",
+    "activeTab",
+    "tabs",
+    "contextMenus",
+    "storage",
+    "clipboardRead",
+    "clipboardWrite",
+    "aiOriginTrial"
+  ],
+  
+  "background": {
+    "service_worker": "background.js",
+    "persistent": true
+  },
+  "commands": {
+    "toggle-opale": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+L"
+      },
+      "description": "Open the chrome-extension search bar on any web page to access the various tools using the defined keyboard shortcut"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["home.html", "edit.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
